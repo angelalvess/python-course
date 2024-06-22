@@ -4,6 +4,8 @@ listt = [
     {'name': 'Ana', 'city': 'Bogotá'},
     {'name': 'Luis', 'city': 'Cali'},
     {'name': 'María', 'city': 'Bogotá'},
+    {'name': 'Carlos', 'city': 'Medellín'},
+    {'name': 'Andrés', 'city': 'Cali'}
 ]
 
 
