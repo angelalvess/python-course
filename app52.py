@@ -12,3 +12,4 @@ dc = {
 }
 
 print(dc)
+print("Open file", __name__)
