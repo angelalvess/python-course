@@ -8,7 +8,7 @@ def listar(tasks):
         return
 
     for task in tasks:
-        print(f"Tarefa: {task}")
+        print(task)
 
 
 def desfazer(tasks, tasks_refazer):
@@ -61,4 +61,5 @@ while True:
     else:
         adicionar(task, tasks)
         listar(tasks)
+
         continue
