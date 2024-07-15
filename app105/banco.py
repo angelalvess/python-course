@@ -1,13 +1,13 @@
-import conta
-import pessoa
+import contas
+import cliente
 
 
 class Banco:
     def __init__(
         self,
         agencias: list[int] | None = None,
-        clientes: list[pessoa.Pessoa] | None = None,
-        contas: list[conta.Conta] | None = None,
+        clientes: list[cliente.Pessoa] | None = None,
+        contas: list[contas.Conta] | None = None,
     ):
         self.agencias = agencias or []
         self.clientes = clientes or []
@@ -28,15 +28,9 @@ class Banco:
             return True
         return False
 
-    def _checa_cliente_conta(self, cliente, conta):
-        if cliente.conta == conta:
-            return True
-        return False
-
-    def autenticar(self, cliente: pessoa.Pessoa, conta: conta.Conta,):
-        return self._checa_cliente(cliente) and self._checa_conta(conta) and \
-            self._checa_agencia(
-                conta) and self._checa_cliente_conta(cliente, conta)
+    def autenticar(self, cliente: cliente.Pessoa, conta: contas.Conta):
+        return self._checa_cliente(cliente) and self._checa_conta(conta) \
+            and self._checa_agencia(conta)
 
     def __repr__(self) -> str:
         class_name = type(self).__name__
@@ -46,14 +40,15 @@ class Banco:
 
 
 if __name__ == '__main__':
-    cliente1 = pessoa.Cliente('Felicity', 21)
-    conta_corrente = conta.ContaCorrente(123, 2222, 0, 100)
-    cliente1.conta = conta_corrente
+    cliente1 = cliente.Pessoa('João', 18)
+    conta_corrente1 = contas.ContaCorrente(111, 456, 1000, 1000)
+    cliente1.conta = conta_corrente1
+
     banco1 = Banco()
     banco1.clientes.extend([cliente1])
-    banco1.contas.extend([conta_corrente])
-    banco1.agencias.extend([123])
+    banco1.contas.extend([conta_corrente1])
+    banco1.agencias.extend([111])
 
-    if banco1.autenticar(cliente1, conta_corrente):
-        conta_corrente.depositar(20)
-        print(cliente1.conta)
+    if banco1.autenticar(cliente1, conta_corrente1):
+        cliente1.conta.depositar(500)
+        cliente1.conta.sacar(200)

@@ -1,5 +1,5 @@
 
-import conta
+import contas
 
 
 class Pessoa:
@@ -32,16 +32,16 @@ class Pessoa:
 class Cliente(Pessoa):
     def __init__(self, nome: str, idade: int) -> None:
         super().__init__(nome, idade)
-        self.conta: conta.Conta | None = None
+        self.conta: contas.Conta | None = None
 
 
 if __name__ == '__main__':
     c1 = Cliente('Luiz', 32)
-    c1.conta = conta.ContaCorrente(1111, 3333, 5000, 1000)
+    c1.conta = contas.ContaCorrente(1111, 3333, 5000, 1000)
     print(c1)
     print(c1.conta)
     print('------------------')
     c2 = Cliente('Angel', 22)
-    c2.conta = conta.ContaPoupanca(55, 3333, 5000)
+    c2.conta = contas.ContaPoupanca(55, 3333, 5000)
     print(c2)
     print(c2.conta)
