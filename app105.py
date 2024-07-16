@@ -5,6 +5,7 @@ from dataclasses import dataclass
 class Person:
     name: str
     surname: str
+    age: int = 55
 
     def complete_name(self):
         return f'{self.name} {self.surname}'
