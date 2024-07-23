@@ -1,0 +1,7 @@
+
+Prezado ${nome},
+Conforme solicitado, segue abaixo os dados solicitados:
+- Idade: ${idade} anos
+- Peso: ${peso} Kg
+- Valor: ${valor}
+- Data: ${data}
