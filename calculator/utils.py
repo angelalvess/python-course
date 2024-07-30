@@ -7,5 +7,16 @@ def isNumOrDot(s):
     return bool(NUM_OR_DOT.search(s))
 
 
-def isEmptry(s):
+def isValidNumber(s):
+    valid = False
+
+    try:
+        float(s)
+        valid = True
+    except ValueError:
+        valid = False
+    return valid
+
+
+def isEmpty(s):
     return s == ''

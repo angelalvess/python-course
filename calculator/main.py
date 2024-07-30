@@ -22,7 +22,7 @@ if __name__ == "__main__":
     display.setPlaceholderText("0")
     window.WidgetToLayout(display)
 
-    grid = ButtonsGrid()
+    grid = ButtonsGrid(display)
     window.vLayout.addLayout(grid)
 
     window.adjustFixedSize()
