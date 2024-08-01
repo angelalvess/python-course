@@ -60,7 +60,7 @@ class ButtonsGrid(QGridLayout):
     def _makeGrid(self):
 
         self.display.eqPressed.connect(self._equal)
-        self.display.delPressed.connect(self.display.backspace)
+        self.display.delPressed.connect(self._backspace)
         self.display.clearPressed.connect(self._clearDisplay)
         self.display.inputPressed.connect(self._insertToDisplay)
         self.display.operatorPressed.connect(self._configLeftOp)
@@ -119,6 +119,7 @@ class ButtonsGrid(QGridLayout):
             return
 
         self.display.insert(text)
+        self.display.setFocus()
 
     @Slot()
     def _invertNumber(self):
@@ -137,6 +138,7 @@ class ButtonsGrid(QGridLayout):
 
         self.equation = self._equationInitial
         self.display.clear()
+        self.display.setFocus()
 
     def _configLeftOp(self, text):
 
@@ -152,12 +154,13 @@ class ButtonsGrid(QGridLayout):
 
         self._operator = text
         self.equation = f"{self._left} {self._operator} ??"
+        self.display.setFocus()
 
     @Slot()
     def _equal(self):
         displayText = self.display.text()
 
-        if not isValidNumber(displayText):
+        if not isValidNumber(displayText) or self._left is None:
             self._showError("Incomplete equation")
             return
 
@@ -182,6 +185,13 @@ class ButtonsGrid(QGridLayout):
 
         if result == 'error':
             self._left = None
+
+        self.display.setFocus()
+
+    @Slot()
+    def _backspace(self):
+        self.display.backspace()
+        self.display.setFocus()
 
     def _showError(self, text):
         msgBox = self.window.makeMessageBox()
